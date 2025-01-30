@@ -3,6 +3,7 @@ package tests;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class SampleAppTest {
@@ -20,6 +21,10 @@ public class SampleAppTest {
         driver.findElement(By.name("UserName")).sendKeys("Serega");
         driver.findElement(By.name("Password")).sendKeys("pwd");
         driver.findElement(By.xpath("//*[@class=\"btn btn-primary\"]")).click();
-        driver.quit();
+
+        String expectedResult = "Welcome, Serega!";
+        String actualResult = driver.findElement(By.id("loginstatus")).getText();
+        Assert.assertEquals(actualResult, expectedResult);
+//        driver.quit();
     }
 }
